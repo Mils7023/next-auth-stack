@@ -1,16 +1,29 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 export default function SignPage() {
+  const router = useRouter();
   const [user, setUser] = useState({
     email: "",
     password: "",
     username: "",
   });
 
-  const onSignup = async () => {};
+  const onSignup = async () => {
+    try {
+      const response = await axios.post("/api/users/signup", user);
+      console.log("response", response);
+      router.push("/login");
+    } catch (error: any) {
+      console.log("Signup failed", error.message);
+    }
+  };
+
+  useEffect(() => {}, [user]);
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen py-2">
@@ -45,7 +58,10 @@ export default function SignPage() {
         onChange={(e) => setUser({ ...user, password: e.target.value })}
         placeholder="password"
       />
-      <button className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600">
+      <button
+        className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600"
+        onClick={onSignup}
+      >
         Signup
       </button>
       <Link href="login">Visit login page</Link>
