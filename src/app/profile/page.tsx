@@ -29,7 +29,7 @@ export default function ProfilePage() {
   }, [userData]);
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen py-2">
+    <div className="w-full max-w-xs flex m-auto flex-col items-center justify-center py-2">
       <h1 className="text-2xl py-4">Profile</h1>
       <hr />
       <p>Profile page</p>

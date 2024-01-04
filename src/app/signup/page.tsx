@@ -22,11 +22,9 @@ export default function SignPage() {
     }
   };
 
-  useEffect(() => {}, [user]);
-
   return (
     <>
-      <div className="w-full max-w-xs flex m-auto flex-col items-center justify-center min-h-screen py-2">
+      <div className="w-full max-w-xs flex m-auto flex-col items-center justify-center  py-2">
         <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
           <div className="mb-4">
             <label
@@ -92,9 +90,6 @@ export default function SignPage() {
             <Link href="login">Visit login page</Link>
           </div>
         </form>
-        <p className="text-center text-gray-500 text-xs">
-          &copy;2024 Acme Corp. All rights reserved.
-        </p>
       </div>
     </>
   );

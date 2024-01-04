@@ -13,17 +13,19 @@ export default function LoginPage() {
   });
 
   const onLogin = async () => {
-    try {
-      const response = await axios.post("/api/users/login", user);
-      router.push("/profile");
-    } catch (error: any) {
-      console.log("Login failed", error.message);
+    if (user.email && user.password) {
+      try {
+        const response = await axios.post("/api/users/login", user);
+        router.push("/profile");
+      } catch (error: any) {
+        console.log("Login failed", error.message);
+      }
     }
   };
 
   return (
     <>
-      <div className="w-full max-w-xs flex m-auto flex-col items-center justify-center min-h-screen py-2">
+      <div className="w-full max-w-xs flex m-auto flex-col items-center justify-center py-2">
         <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
           <div className="mb-4">
             <label
@@ -69,9 +71,6 @@ export default function LoginPage() {
             <Link href="signup">Visit signup page</Link>
           </div>
         </form>
-        <p className="text-center text-gray-500 text-xs">
-          &copy;2024 Acme Corp. All rights reserved.
-        </p>
       </div>
     </>
   );
